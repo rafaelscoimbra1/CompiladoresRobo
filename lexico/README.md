@@ -47,3 +47,5 @@ Numero ::= Digito*
 Letra ::= “A” | “a” | “B” | “b” | ... | “z”
 Digito ::= “0” | ... | “9”
 Sentido ::= “esquerda” | “direita”
+
+# Criação
