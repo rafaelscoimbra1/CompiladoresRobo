@@ -32,7 +32,7 @@ void id (char letter) { // ler todas as letras
 }
 
 void numero (char digit) { // Ler todos os digitos
-    palavra.push_back(letter);
+    palavra.push_back(digit);
     while (lookahead >= 0 && lookahead <= 9){
         io.get(digit);
         coluna++;
