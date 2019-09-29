@@ -211,7 +211,6 @@ bool createTokens() { // cria os tokens e insere na lista Lex
 
 bool geraArquivo (string arquivo){
     for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
-
     }
     return true;
 }
