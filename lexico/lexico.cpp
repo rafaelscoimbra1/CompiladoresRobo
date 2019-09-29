@@ -7,7 +7,7 @@ using namespace std;
 
 fstream in;
 ofstream out;
-int linha = 0;
+int linha = 1;
 int coluna = 0;
 char lookahead;
 string palavra;
@@ -17,8 +17,8 @@ typedef struct token {
     string lexema;
     string type;
     int line;
-    int line_init;
-    int line_finish;
+    int col_init;
+    int col_finish;
 }token;
 
 list<token> lex;
@@ -26,8 +26,8 @@ list<token> lex;
 /*Função que ler os caracteres de um id e insere na variável 'palavra', a qual é o token final*/
 void id (char letter) { // ler todas as letras
     palavra.push_back(letter);
-    while ((lookahead >= 'a' && lookahead <= 'z') || (lookahead >= 'A' && lookahead <= 'Z') || (lookahead >= 0 && lookahead <= 9)) {
-        in.get(letter);
+    while ((lookahead >= 'a' && lookahead <= 'z') || (lookahead >= 'A' && lookahead <= 'Z') || (lookahead >= 0 && lookahead <= 9)) {       
+	in.get(letter);
         coluna++;
         palavra.push_back(letter);
         lookahead = in.peek();
@@ -141,14 +141,14 @@ string keyword (string lexema) {
 
 string typeToken () {
     //Criar função que reconhece as keywords
-    if (flag.compare("id")) {
-        if (keyword(palavra).compare("KEY")) {
+    if (flag=="id") {
+		if (keyword(palavra)=="KEY") {
             return "KEY";
         } else {
             return "ID";
         }
-    } else if (flag.compare("numero")) {
-        return "NUM";
+    } else if (flag=="numero") {        
+	return "NUM";
     }
 }
 
@@ -157,8 +157,8 @@ void insertList () { // insere o novo lexema (token) na lista
     string type;
 
     word.lexema = string(palavra);
-    word.line_finish = coluna;
-    word.line_init = word.line_finish - palavra.length();
+    word.col_finish = coluna;
+    word.col_init = word.col_finish - palavra.length();
     word.line = linha;
     type = typeToken();
     word.type = string(type);
@@ -184,8 +184,8 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             flag = "numero";
         }
         if ((lookahead == ' ') || (lookahead == '\0') || (lookahead == '\n') || (lookahead == '\t') || (lookahead == '#')) { // reconhece final de: token, linha. 
-            if (!palavra.empty()) {
-                insertList();
+            if (!palavra.empty()) {               
+		insertList();
                 flag = "Inicio";
             }
         }
@@ -209,9 +209,8 @@ bool createTokens() { // cria os tokens e insere na lista Lex
     return res;
 }
 
-bool geraArquivo (string arquivo){
-    for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
-    }
+bool geraArquivo (){
+    
     return true;
 }
 
@@ -235,5 +234,21 @@ int main(int argc, char *argv[]){
         local += coluna - palavra.length();
         cout << local << endl;
     }
+	for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
+		out << iterator->line;
+		out << ",";
+		out << iterator->col_init;
+		out << ",";
+		out << iterator->col_finish;
+		out << ",";
+		out << iterator->type;
+		out << ",";
+		out << iterator->lexema;
+		out << endl;
+	
+    }
+    
+    in.close();
+    out.close();
     return 0;
 }
