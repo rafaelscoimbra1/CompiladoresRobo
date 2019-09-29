@@ -14,7 +14,7 @@ string palavra;
 string flag = "Inicial";
 
 typedef struct token {
-    string token;
+    string lexema;
     string type;
     int line;
     int line_init;
@@ -48,18 +48,6 @@ void comment (char letter) { // ler todos os caracteres que fazem parte dos come
     while ((letter != '\0') || (letter != '\n'))
         in.get(letter);
         coluna++;
-}
-
-void insertList () { // insere o novo lexema (token) na lista
-    token word;
-
-    word.token = string(palavra);
-    word.line_finish = coluna;
-    word.line_init = word.line_finish - palavra.length();
-    word.line = linha;
-
-    lex.push_back(word);
-    palavra = "";
 }
 
 string keyword (string lexema) {
@@ -151,20 +139,33 @@ string keyword (string lexema) {
     return "ERRO";
 }
 
-bool typeToken (token word) {
+string typeToken () {
     //Criar função que reconhece as keywords
     if (flag.compare("id")) {
-        if (keyword(word.token).compare("KEY")) {
-            word.type = "KEY";
+        if (keyword(palavra).compare("KEY")) {
+            return "KEY";
         } else {
-            word.type = "ID";
+            return "ID";
         }
     } else if (flag.compare("numero")) {
-        word.type = "NUM";
+        return "NUM";
     }
-    
 }
 
+void insertList () { // insere o novo lexema (token) na lista
+    token word;
+    string type;
+
+    word.lexema = string(palavra);
+    word.line_finish = coluna;
+    word.line_init = word.line_finish - palavra.length();
+    word.line = linha;
+    type = typeToken();
+    word.type = string(type);
+
+    lex.push_back(word);
+    palavra = "";
+}
 
 bool createTokens() { // cria os tokens e insere na lista Lex
     char c;
@@ -182,14 +183,11 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             numero(c);
             flag = "numero";
         }
-        if ((c == ' ') || (c == '\0') || (c == '\n')) { // reconhece final de: token, linha. 
+        if ((lookahead == ' ') || (lookahead == '\0') || (lookahead == '\n') || (lookahead == '\t') || (lookahead == '#')) { // reconhece final de: token, linha. 
             if (!palavra.empty()) {
                 insertList();
                 flag = "Inicio";
             }
-            if (c == '\n')
-                linha++;
-                coluna = 0;
         }
         if (c == '#') { // reconhece comentários
             if (!palavra.empty()) {
@@ -202,6 +200,10 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             lookahead = c;
             res = false;
             break;
+        }
+        if (c == '\n') {
+            linha++;
+            coluna = 0;
         }
     }
     return res;
@@ -231,7 +233,7 @@ int main(int argc, char *argv[]){
         local += " linha: ";
         local += linha;
         local += " Coluna: ";
-        local += coluna;
+        local += coluna - palavra.length();
         cout << local << endl;
     }
     return 0;
