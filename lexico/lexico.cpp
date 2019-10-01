@@ -26,7 +26,7 @@ list<token> lex;
 /*Função que ler os caracteres de um id e insere na variável 'palavra', a qual é o token final*/
 void id (char letter) { // ler todas as letras
     palavra.push_back(letter);
-    while ((lookahead >= 'a' && lookahead <= 'z') || (lookahead >= 'A' && lookahead <= 'Z') || (lookahead >= 0 && lookahead <= 9)) {       
+    while ((lookahead >= 'a' && lookahead <= 'z') || (lookahead >= 'A' && lookahead <= 'Z') || (lookahead >= 0 && lookahead <= 9)) {
 	in.get(letter);
         coluna++;
         palavra.push_back(letter);
@@ -147,8 +147,8 @@ string typeToken () {
         } else {
             return "ID";
         }
-    } else if (flag=="numero") {        
-	return "NUM";
+    } else if (flag=="numero") {
+	     return "NUM";
     }
 }
 
@@ -183,9 +183,9 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             numero(c);
             flag = "numero";
         }
-        if ((lookahead == ' ') || (lookahead == '\0') || (lookahead == '\n') || (lookahead == '\t') || (lookahead == '#')) { // reconhece final de: token, linha. 
-            if (!palavra.empty()) {               
-		insertList();
+        if ((lookahead == ' ') || (lookahead == '\0') || (lookahead == '\n') || (lookahead == '\t') || (lookahead == '#')) { // reconhece final de: token, linha.
+            if (!palavra.empty()) {
+		            insertList();
                 flag = "Inicio";
             }
         }
@@ -196,7 +196,7 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             }
             comment(c);
         }
-        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= 0 && c <= 9) || (c != '#'))) {
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || (c == '#') || (c == ' ') || (c == '\n'))) {
             lookahead = c;
             res = false;
             break;
@@ -210,11 +210,12 @@ bool createTokens() { // cria os tokens e insere na lista Lex
 }
 
 bool geraArquivo (){
-    
+
     return true;
 }
 
 int main(int argc, char *argv[]){
+
     bool result;
 
     if (argc < 3) {
@@ -225,14 +226,7 @@ int main(int argc, char *argv[]){
     }
     result = createTokens(); // recebe a resposta se o léxico obteve um erro ou não
     if (!result) {
-        string local;
-        local = "ERRO [Lexico], caracter: ";
-        local += lookahead;
-        local += " linha: ";
-        local += linha;
-        local += " Coluna: ";
-        local += coluna - palavra.length();
-        cout << local << endl;
+        cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << "coluna: " << coluna - (palavra.length()) << endl;
     }
 	for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
 		out << iterator->line;
@@ -245,9 +239,9 @@ int main(int argc, char *argv[]){
 		out << ",";
 		out << iterator->lexema;
 		out << endl;
-	
+
     }
-    
+
     in.close();
     out.close();
     return 0;
