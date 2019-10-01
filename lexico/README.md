@@ -2,6 +2,7 @@
 
 ## Requisitos mínimos para o Léxico
 
+<<<<<<< HEAD
 A parte básica do Léxico corresponde as seguintes regras:
 
  - Letra ::= “A” | “a” | “B” | “b” | ... | “z”
@@ -59,3 +60,52 @@ A execução consiste em uma chamada, a qual deve ser especificado como parametr
 ## Arquivo de saída
 
 O arquivo de saída consiste em um arquivo '.lex', o qual detém a seguinte estrutura: (Num_Linha, Numero_Coluna_Inicial, Numero_Coluna_Final, Tipo_Token,"Lexema").
+=======
+| Analisador | Descrição | | Observação |
+| ------------- | ------------- | ------------- |
+| Léxico  | Deve ler a sequência de caracteres que compõe o código fonte do programa, identificando-os e agrupando-os em uma seqüência de *tokens* válidos da linguagem. | Não é permitido o uso de qualquer processador léxico (e.g.). |
+|  | Deve ser capaz de identificar e reportar os erros léxicos encontrados no código fonte (e.g. símbolos desconhecidos ou identificador mal-formado). Para cada	 erro encontrado, deve-se informar o posicionamento (linha e coluna) no arquivo fonte de entrada em que o erro ocorreu.  |  |
+
+## Basic Syntax
+
+BEGINNING-OF-PROGRAM
+
+ new instructions
+
+ BEGINNING-OF-EXECUTION
+  main executable code
+ END-OF-EXECUTION
+
+END-OF-PROGRAM
+Where new instructions is a list of definitions of the following form:
+DEFINE-NEW-INSTRUCTION instruction-name AS
+BEGIN
+  instruction code
+END
+
+# Tokens
+
+• Os	terminais	estão	descritos	entre	aspas	duplas e	em	negrito.	
+• O	símbolo	*	representa	zero	ou	mais	ocorrências	do	não-terminal à	esquerda	deste	símbolo.	
+• Produções opcionais	estão	entre	colchetes.	
+• O	compilador	deve	aceitar	palavras	escritas	em	minúsculas	ou	maiúsculas.
+• Comentários	são	definidos	em	linhas	iniciadas	com	o	símbolo	“#”
+
+Token Expressão	Regular
+Programa ::= “programainicio” Declaracao* “execucaoinicio” Comando “fimexecucao” “fimprograma”
+Declaracao ::= “definainstrucao” identificador “como” Comando
+Bloco ::= “inicio” Comando* ”fim”
+Comando ::= Bloco | Iteracao | Laco | Condicional | Instrução
+Iteracao ::= “repita” Numero “vezes” Comando “fimrepita”
+Laço ::= “enquanto” Condicao “faca” Comando “fimpara”
+Condicional ::= “se” Condicao “entao” Comando “fimse” [“senao” Comando “fimsenao”]
+Instrucao ::= “mova” Numero* [“passos”] | “Vire Para” Sentido | Identificador | “Pare” | “Finalize” | “Apague Lampada”| “Acenda Lampada” | “Aguarde Ate” Condição
+Condicao ::= “Robo Pronto” | “Robo Ocupado” | “Robo Parado” | “Robo Movimentando” | “Frente Robo Bloqueada” | “Direita Robo Bloqueada” | “Esquerda Robo Bloqueada” | “Lampada Acessa a Frente” |”Lampada Apagada a Frente” | “Lampada Acessa A Esquerda” | “Lampada Apagada A Esquerda” | “Lampada Acessa A Direita” | “Lampada Apagada A Direita”
+Identificador ::= Letra(Letra|Digito)*
+Numero ::= Digito*
+Letra ::= “A” | “a” | “B” | “b” | ... | “z”
+Digito ::= “0” | ... | “9”
+Sentido ::= “esquerda” | “direita”
+
+# Criação
+>>>>>>> 1be5e26bbc6a744bda32c182d0f41c2495ecea70

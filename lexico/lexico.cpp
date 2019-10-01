@@ -226,7 +226,7 @@ int main(int argc, char *argv[]){
     }
     result = createTokens(); // recebe a resposta se o léxico obteve um erro ou não
     if (!result) {
-        cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << "coluna: " << coluna - (palavra.length()) << endl;
+        cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << " coluna: " << coluna - (palavra.length()) << endl;
     }
 	for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
 		out << iterator->line;
