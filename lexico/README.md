@@ -2,65 +2,6 @@
 
 ## Requisitos mínimos para o Léxico
 
-<<<<<<< HEAD
-A parte básica do Léxico corresponde as seguintes regras:
-
- - Letra ::= “A” | “a” | “B” | “b” | ... | “z”
- - Digito ::= “0” | ... | “9”
-
-As palavras reservadas são as seguintes:
-
- - programainicio
- - execucaoinicio
- - fimexecucao
- - fimprograma
- - definainstrucao
- - como
- - inicio
- - fim
- - repita
- - vezes
- - fimrepita
- - se
- - entao
- - fimse
- - [
- - senao
- - fimsenao
- - ]
- - mova
- - passos
- - Vire
- - Para
- - Pare
- - Finalize
- - Apague
- - Lampada
- - Acenda
- - Aguarde
- - Ate
- - Movimentando
- - Robo
- - Pronto
- - Ocupado
- - Parado
- - Frente
- - Bloqueada
- - Direita
- - Esquerda
- - Acessa
- - a
- - Apagada
- - A
-
-## Execução do compilador
-
-A execução consiste em uma chamada, a qual deve ser especificado como parametros para a execução: o arquivo de entrada e o arquivo de saída, da seguinte forma: **'./compilador arquivodeentrada.robo arquivodesaida.lex'**.
-
-## Arquivo de saída
-
-O arquivo de saída consiste em um arquivo '.lex', o qual detém a seguinte estrutura: (Num_Linha, Numero_Coluna_Inicial, Numero_Coluna_Final, Tipo_Token,"Lexema").
-=======
 | Analisador | Descrição | | Observação |
 | ------------- | ------------- | ------------- |
 | Léxico  | Deve ler a sequência de caracteres que compõe o código fonte do programa, identificando-os e agrupando-os em uma seqüência de *tokens* válidos da linguagem. | Não é permitido o uso de qualquer processador léxico (e.g.). |
@@ -85,9 +26,9 @@ END
 
 # Tokens
 
-• Os	terminais	estão	descritos	entre	aspas	duplas e	em	negrito.	
-• O	símbolo	*	representa	zero	ou	mais	ocorrências	do	não-terminal à	esquerda	deste	símbolo.	
-• Produções opcionais	estão	entre	colchetes.	
+• Os	terminais	estão	descritos	entre	aspas	duplas e	em	negrito.
+• O	símbolo	*	representa	zero	ou	mais	ocorrências	do	não-terminal à	esquerda	deste	símbolo.
+• Produções opcionais	estão	entre	colchetes.
 • O	compilador	deve	aceitar	palavras	escritas	em	minúsculas	ou	maiúsculas.
 • Comentários	são	definidos	em	linhas	iniciadas	com	o	símbolo	“#”
 
@@ -108,4 +49,12 @@ Digito ::= “0” | ... | “9”
 Sentido ::= “esquerda” | “direita”
 
 # Criação
->>>>>>> 1be5e26bbc6a744bda32c182d0f41c2495ecea70
+
+
+## Execução do compilador
+
+A execução consiste em uma chamada, a qual deve ser especificado como parametros para a execução: o arquivo de entrada e o arquivo de saída, da seguinte forma: **'./compilador arquivodeentrada.robo arquivodesaida.lex'**.
+
+## Arquivo de saída
+
+O arquivo de saída consiste em um arquivo '.lex', o qual detém a seguinte estrutura: (Num_Linha, Numero_Coluna_Inicial, Numero_Coluna_Final, Tipo_Token,"Lexema").
