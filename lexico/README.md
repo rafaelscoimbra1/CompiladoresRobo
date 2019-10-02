@@ -26,11 +26,11 @@ END
 
 # Tokens
 
-• Os	terminais	estão	descritos	entre	aspas	duplas e	em	negrito.
-• O	símbolo	*	representa	zero	ou	mais	ocorrências	do	não-terminal à	esquerda	deste	símbolo.
-• Produções opcionais	estão	entre	colchetes.
-• O	compilador	deve	aceitar	palavras	escritas	em	minúsculas	ou	maiúsculas.
-• Comentários	são	definidos	em	linhas	iniciadas	com	o	símbolo	“#”
+ - Os terminais estão descritos entre aspas duplas e em negrito.
+ - O símbolo* representa zero ou mais ocorrências do não-terminal à esquerda deste símbolo.
+ - Produções opcionais estão entre colchetes.
+ - O compilador deve aceitar palavras escritas em minúsculas ou maiúsculas.
+ - Comentários são definidos em linhas iniciadas com o símbolo “#”
 
 ## Token Expressão	Regular
 
@@ -60,8 +60,7 @@ A expressões regulares necessária para o analizador léxico, são as descritas
 
 ## Atômatos finitos deterministicos para a análise léxica
 
-![Alt text](https://github.com/rafaelscoimbra1/CompiladoresRobo/blob/dev/lexico/lexico.svg?sanitize=true)
-<img src="https://github.com/rafaelscoimbra1/CompiladoresRobo/blob/dev/lexico/lexico.svg?sanitize=true">
+![Autômato análise léxica](https://github.com/rafaelscoimbra1/CompiladoresRobo/blob/dev/lexico/lexico.svg?sanitize=true)
  
 ## Execução do compilador
 
