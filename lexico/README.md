@@ -2,55 +2,54 @@
 
 ## Requisitos mínimos para o Léxico
 
-A parte básica do Léxico corresponde as seguintes regras:
+| Analisador | Descrição | | Observação |
+| ------------- | ------------- | ------------- |
+| Léxico  | Deve ler a sequência de caracteres que compõe o código fonte do programa, identificando-os e agrupando-os em uma seqüência de *tokens* válidos da linguagem. | Não é permitido o uso de qualquer processador léxico (e.g.). |
+|  | Deve ser capaz de identificar e reportar os erros léxicos encontrados no código fonte (e.g. símbolos desconhecidos ou identificador mal-formado). Para cada	 erro encontrado, deve-se informar o posicionamento (linha e coluna) no arquivo fonte de entrada em que o erro ocorreu.  |  |
 
- - Letra ::= “A” | “a” | “B” | “b” | ... | “z”
- - Digito ::= “0” | ... | “9”
+## Basic Syntax
 
-As palavras reservadas são as seguintes:
+BEGINNING-OF-PROGRAM
 
- - programainicio
- - execucaoinicio
- - fimexecucao
- - fimprograma
- - definainstrucao
- - como
- - inicio
- - fim
- - repita
- - vezes
- - fimrepita
- - se
- - entao
- - fimse
- - [
- - senao
- - fimsenao
- - ]
- - mova
- - passos
- - Vire
- - Para
- - Pare
- - Finalize
- - Apague
- - Lampada
- - Acenda
- - Aguarde
- - Ate
- - Movimentando
- - Robo
- - Pronto
- - Ocupado
- - Parado
- - Frente
- - Bloqueada
- - Direita
- - Esquerda
- - Acessa
- - a
- - Apagada
- - A
+ new instructions
+
+ BEGINNING-OF-EXECUTION
+  main executable code
+ END-OF-EXECUTION
+
+END-OF-PROGRAM
+Where new instructions is a list of definitions of the following form:
+DEFINE-NEW-INSTRUCTION instruction-name AS
+BEGIN
+  instruction code
+END
+
+# Tokens
+
+• Os	terminais	estão	descritos	entre	aspas	duplas e	em	negrito.
+• O	símbolo	*	representa	zero	ou	mais	ocorrências	do	não-terminal à	esquerda	deste	símbolo.
+• Produções opcionais	estão	entre	colchetes.
+• O	compilador	deve	aceitar	palavras	escritas	em	minúsculas	ou	maiúsculas.
+• Comentários	são	definidos	em	linhas	iniciadas	com	o	símbolo	“#”
+
+Token Expressão	Regular
+Programa ::= “programainicio” Declaracao* “execucaoinicio” Comando “fimexecucao” “fimprograma”
+Declaracao ::= “definainstrucao” identificador “como” Comando
+Bloco ::= “inicio” Comando* ”fim”
+Comando ::= Bloco | Iteracao | Laco | Condicional | Instrução
+Iteracao ::= “repita” Numero “vezes” Comando “fimrepita”
+Laço ::= “enquanto” Condicao “faca” Comando “fimpara”
+Condicional ::= “se” Condicao “entao” Comando “fimse” [“senao” Comando “fimsenao”]
+Instrucao ::= “mova” Numero* [“passos”] | “Vire Para” Sentido | Identificador | “Pare” | “Finalize” | “Apague Lampada”| “Acenda Lampada” | “Aguarde Ate” Condição
+Condicao ::= “Robo Pronto” | “Robo Ocupado” | “Robo Parado” | “Robo Movimentando” | “Frente Robo Bloqueada” | “Direita Robo Bloqueada” | “Esquerda Robo Bloqueada” | “Lampada Acessa a Frente” |”Lampada Apagada a Frente” | “Lampada Acessa A Esquerda” | “Lampada Apagada A Esquerda” | “Lampada Acessa A Direita” | “Lampada Apagada A Direita”
+Identificador ::= Letra(Letra|Digito)*
+Numero ::= Digito*
+Letra ::= “A” | “a” | “B” | “b” | ... | “z”
+Digito ::= “0” | ... | “9”
+Sentido ::= “esquerda” | “direita”
+
+# Criação
+
 
 ## Execução do compilador
 

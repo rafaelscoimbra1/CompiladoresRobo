@@ -26,7 +26,7 @@ list<token> lex;
 /*Função que ler os caracteres de um id e insere na variável 'palavra', a qual é o token final*/
 void id (char letter) { // ler todas as letras
     palavra.push_back(letter);
-    while ((lookahead >= 'a' && lookahead <= 'z') || (lookahead >= 'A' && lookahead <= 'Z') || (lookahead >= 0 && lookahead <= 9)) {       
+    while ((lookahead >= 'a' && lookahead <= 'z') || (lookahead >= 'A' && lookahead <= 'Z') || (lookahead >= 0 && lookahead <= 9)) {
 	in.get(letter);
         coluna++;
         palavra.push_back(letter);
@@ -45,95 +45,95 @@ void numero (char digit) { // Ler todos os digitos
 }
 
 void comment (char letter) { // ler todos os caracteres que fazem parte dos comentários
-    while ((letter != '\0') || (letter != '\n'))
+    while ((letter != '\n'))
         in.get(letter);
         coluna++;
 }
 
 string keyword (string lexema) {
-    if (lexema.compare("programainicio")){
+    if (lexema == "programainicio"){
         return "KEY";
-    } else if (lexema.compare("execucaoinicio")){
+    } else if (lexema == "execucaoinicio"){
         return "KEY";
-    } else if (lexema.compare("definainstrucao")){
+    } else if (lexema == "definainstrucao"){
         return "KEY";
-    } else if (lexema.compare("inicio")){
+    } else if (lexema == "inicio"){
         return "KEY";
-    } else if (lexema.compare("como")){
+    } else if (lexema == "como"){
         return "KEY";
-    } else if (lexema.compare("repita")){
+    } else if (lexema == "repita"){
         return "KEY";
-    } else if (lexema.compare("vezes")){
+    } else if (lexema == "vezes"){
         return "KEY";
-    } else if (lexema.compare("se")){
+    } else if (lexema == "se"){
         return "KEY";
-    } else if (lexema.compare("entao")){
+    } else if (lexema == "entao"){
         return "KEY";
-    } else if (lexema.compare("[")){
+    } else if (lexema == "["){
         return "KEY";
-    } else if (lexema.compare("]")){
+    } else if (lexema == "]"){
         return "KEY";
-    } else if (lexema.compare("senao")){
+    } else if (lexema == "senao"){
         return "KEY";
-    } else if (lexema.compare("mova")){
+    } else if (lexema == "mova"){
         return "KEY";
-    } else if (lexema.compare("passos")){
+    } else if (lexema == "passos"){
         return "KEY";
-    } else if (lexema.compare("Vire")){
+    } else if (lexema == "Vire"){
         return "KEY";
-    } else if (lexema.compare("Para")){
+    } else if (lexema == "Para"){
         return "KEY";
-    } else if (lexema.compare("Pare")){
+    } else if (lexema == "Pare"){
         return "KEY";
-    } else if (lexema.compare("Finalize")){
+    } else if (lexema == "Finalize"){
         return "KEY";
-    } else if (lexema.compare("Apague")){
+    } else if (lexema == "Apague"){
         return "KEY";
-    } else if (lexema.compare("Lampada")){
+    } else if (lexema == "Lampada"){
         return "KEY";
-    } else if (lexema.compare("Acenda")){
+    } else if (lexema == "Acenda"){
         return "KEY";
-    } else if (lexema.compare("Aguarde")){
+    } else if (lexema == "Aguarde"){
         return "KEY";
-    } else if (lexema.compare("Movimentando")){
+    } else if (lexema == "Movimentando"){
         return "KEY";
-    } else if (lexema.compare("Robo")){
+    } else if (lexema == "Robo"){
         return "KEY";
-    } else if (lexema.compare("Pronto")){
+    } else if (lexema == "Pronto"){
         return "KEY";
-    } else if (lexema.compare("Ocupado")){
+    } else if (lexema == "Ocupado"){
         return "KEY";
-    } else if (lexema.compare("Parado")){
+    } else if (lexema == "Parado"){
         return "KEY";
-    } else if (lexema.compare("Frente")){
+    } else if (lexema == "Frente"){
         return "KEY";
-    } else if (lexema.compare("Bloqueada")){
+    } else if (lexema == "Bloqueada"){
         return "KEY";
-    } else if (lexema.compare("Direita")){
+    } else if (lexema == "Direita"){
         return "KEY";
-    } else if (lexema.compare("Esquerda")){
+    } else if (lexema == "Esquerda"){
         return "KEY";
-    } else if (lexema.compare("Acessa")){
+    } else if (lexema == "Acessa"){
         return "KEY";
-    } else if (lexema.compare("ate")){
+    } else if (lexema == "ate"){
         return "KEY";
-    } else if (lexema.compare("a")){
+    } else if (lexema == "a"){
         return "KEY";
-    } else if (lexema.compare("Apagada")){
+    } else if (lexema == "Apagada"){
         return "KEY";
-    } else if (lexema.compare("A")){
+    } else if (lexema == "A"){
         return "KEY";
-    } else if (lexema.compare("fimsenao")){
+    } else if (lexema == "fimsenao"){
         return "KEY";
-    } else if (lexema.compare("fimse")){
+    } else if (lexema == "fimse"){
         return "KEY";
-    } else if (lexema.compare("fim")){
+    } else if (lexema == "fim"){
         return "KEY";
-    } else if (lexema.compare("fimrepita")){
+    } else if (lexema == "fimrepita"){
         return "KEY";
-    } else if (lexema.compare("fimexecucao")){
+    } else if (lexema == "fimexecucao"){
         return "KEY";
-    } else if (lexema.compare("fimprograma")){
+    } else if (lexema == "fimprograma"){
         return "KEY";
     }
     return "ERRO";
@@ -147,8 +147,8 @@ string typeToken () {
         } else {
             return "ID";
         }
-    } else if (flag=="numero") {        
-	return "NUM";
+    } else if (flag=="numero") {
+	     return "NUM";
     }
 }
 
@@ -183,9 +183,9 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             numero(c);
             flag = "numero";
         }
-        if ((lookahead == ' ') || (lookahead == '\0') || (lookahead == '\n') || (lookahead == '\t') || (lookahead == '#')) { // reconhece final de: token, linha. 
-            if (!palavra.empty()) {               
-		insertList();
+        if ((lookahead == ' ') || (lookahead == '\0') || (lookahead == '\n') || (lookahead == '\t') || (lookahead == '#')) { // reconhece final de: token, linha.
+            if (!palavra.empty()) {
+		            insertList();
                 flag = "Inicio";
             }
         }
@@ -196,7 +196,7 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             }
             comment(c);
         }
-        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= 0 && c <= 9) || (c != '#'))) {
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || (c == '#') || (c == ' ') || (c == '\n'))) {
             lookahead = c;
             res = false;
             break;
@@ -210,11 +210,12 @@ bool createTokens() { // cria os tokens e insere na lista Lex
 }
 
 bool geraArquivo (){
-    
+
     return true;
 }
 
 int main(int argc, char *argv[]){
+
     bool result;
 
     if (argc < 3) {
@@ -225,14 +226,7 @@ int main(int argc, char *argv[]){
     }
     result = createTokens(); // recebe a resposta se o léxico obteve um erro ou não
     if (!result) {
-        string local;
-        local = "ERRO [Lexico], caracter: ";
-        local += lookahead;
-        local += " linha: ";
-        local += linha;
-        local += " Coluna: ";
-        local += coluna - palavra.length();
-        cout << local << endl;
+        cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << " coluna: " << coluna - (palavra.length()) << endl;
     }
 	for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
 		out << iterator->line;
@@ -245,9 +239,9 @@ int main(int argc, char *argv[]){
 		out << ",";
 		out << iterator->lexema;
 		out << endl;
-	
+
     }
-    
+
     in.close();
     out.close();
     return 0;
