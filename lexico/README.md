@@ -2,19 +2,19 @@
 
 ## Requisitos mínimos para o Léxico
 
-| Analisador | Descrição | | Observação |
-| ------------- | ------------- | ------------- |
-| Léxico  | Deve ler a sequência de caracteres que compõe o código fonte do programa, identificando-os e agrupando-os em uma seqüência de *tokens* válidos da linguagem. | Não é permitido o uso de qualquer processador léxico (e.g.). |
-|  | Deve ser capaz de identificar e reportar os erros léxicos encontrados no código fonte (e.g. símbolos desconhecidos ou identificador mal-formado). Para cada	 erro encontrado, deve-se informar o posicionamento (linha e coluna) no arquivo fonte de entrada em que o erro ocorreu.  |  |
+O analisador Léxico detém os seguintes requisitos:
 
-## Basic Syntax
+ - Deve ler a sequência de caracteres que compõe o código fonte do programa, identificando-os e agrupando-os em uma seqüência de *tokens* válidos da linguagem. | Não é permitido o uso de qualquer processador léxico (e.g.).
+ - Deve ser capaz de identificar e reportar os erros léxicos encontrados no código fonte (e.g. símbolos desconhecidos ou identificador mal-formado). Para cada	 erro encontrado, deve-se informar o posicionamento (linha e coluna) no arquivo fonte de entrada em que o erro ocorreu.
+
+## Sintaxe básica
 
 BEGINNING-OF-PROGRAM
 
  new instructions
 
  BEGINNING-OF-EXECUTION
-  main executable code
+   main executable code
  END-OF-EXECUTION
 
 END-OF-PROGRAM
@@ -32,7 +32,8 @@ END
 • O	compilador	deve	aceitar	palavras	escritas	em	minúsculas	ou	maiúsculas.
 • Comentários	são	definidos	em	linhas	iniciadas	com	o	símbolo	“#”
 
-Token Expressão	Regular
+## Token Expressão	Regular
+
 Programa ::= “programainicio” Declaracao* “execucaoinicio” Comando “fimexecucao” “fimprograma”
 Declaracao ::= “definainstrucao” identificador “como” Comando
 Bloco ::= “inicio” Comando* ”fim”
@@ -48,9 +49,20 @@ Letra ::= “A” | “a” | “B” | “b” | ... | “z”
 Digito ::= “0” | ... | “9”
 Sentido ::= “esquerda” | “direita”
 
-# Criação
+## Expressões Regulares
 
+A expressões regulares necessária para o analizador léxico, são as descritas abaixo:
 
+ - digito = [0 - 9]
+ - letra = [a-zA-Z]
+ - numero = (digito)*
+ - id = letra(letra | digito)*
+
+## Atômatos finitos deterministicos para a análise léxica
+
+![Alt text](https://github.com/rafaelscoimbra1/CompiladoresRobo/blob/dev/lexico/lexico.svg?sanitize=true)
+<img src="https://github.com/rafaelscoimbra1/CompiladoresRobo/blob/dev/lexico/lexico.svg?sanitize=true">
+ 
 ## Execução do compilador
 
 A execução consiste em uma chamada, a qual deve ser especificado como parametros para a execução: o arquivo de entrada e o arquivo de saída, da seguinte forma: **'./compilador arquivodeentrada.robo arquivodesaida.lex'**.
