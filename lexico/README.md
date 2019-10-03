@@ -85,15 +85,15 @@ O retorno do analisador léxico pode ser verificado nas imagens abaixo:
 ### Acertos
 
 ![Acerto 1](imagens/print-acerto/print-in1.png)
-![Acerto 1](imagens/print-acerto/print-lex-in1.png)
-![Acerto 1](imagens/print-acerto/print-in2.png)
-![Acerto 1](imagens/print-acerto/print-lex-in2.png)
+![Acerto 1 lex](imagens/print-acerto/print-lex-in1.png)
+![Acerto 2](imagens/print-acerto/print-in2.png)
+![Acerto 2 lex](imagens/print-acerto/print-lex-in2.png)
 
 ### Erros
 
-![Acerto 1](imagens/print-erro/print-erro1.png)
-![Acerto 1](imagens/print-acerto/print-lex-erro1.png)
-![Acerto 1](imagens/print-erro/print-erro2.png)
-![Acerto 1](imagens/print-acerto/print-lex-erro2.png)
-![Acerto 1](imagens/print-erro/print-erro3.png)
-![Acerto 1](imagens/print-acerto/print-lex-erro3.png)
+![Erro 1](imagens/print-erro/print-erro1.png)
+![Erro 1 lex](imagens/print-acerto/print-lex-erro1.png)
+![Erro 2](imagens/print-erro/print-erro2.png)
+![Erro 2 lex](imagens/print-acerto/print-lex-erro2.png)
+![Erro 3](imagens/print-erro/print-erro3.png)
+![Erro 3 lex](imagens/print-acerto/print-lex-erro3.png)
