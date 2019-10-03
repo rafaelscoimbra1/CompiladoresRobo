@@ -240,10 +240,8 @@ int main(int argc, char *argv[]){
     }
     result = createTokens(); // recebe a resposta se o léxico obteve um erro ou não
     geraArquivo();
-    if (!result) {
-        cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << " coluna: " << coluna - (palavra.length()) << endl;
-    }
-	for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
+    
+    for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
 		cout << iterator->line;
 		cout << ",";
 		cout << iterator->col_init;
@@ -255,6 +253,11 @@ int main(int argc, char *argv[]){
 		cout << iterator->lexema;
 		cout << endl;
 
+    }
+
+    if (!result) {
+        cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << " coluna: " << coluna - (palavra.length()) << endl;
+        out << "(" << linha << ", " << coluna - (palavra.length()) << ", " << coluna << ", " << "ERROR, " << lookahead << endl;
     }
 
     in.close();
