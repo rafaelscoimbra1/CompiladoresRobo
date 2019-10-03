@@ -34,20 +34,20 @@ END
 
 ## Token Expressão	Regular
 
-Programa ::= “programainicio” Declaracao* “execucaoinicio” Comando “fimexecucao” “fimprograma”
-Declaracao ::= “definainstrucao” identificador “como” Comando
-Bloco ::= “inicio” Comando* ”fim”
-Comando ::= Bloco | Iteracao | Laco | Condicional | Instrução
-Iteracao ::= “repita” Numero “vezes” Comando “fimrepita”
-Laço ::= “enquanto” Condicao “faca” Comando “fimpara”
-Condicional ::= “se” Condicao “entao” Comando “fimse” [“senao” Comando “fimsenao”]
-Instrucao ::= “mova” Numero* [“passos”] | “Vire Para” Sentido | Identificador | “Pare” | “Finalize” | “Apague Lampada”| “Acenda Lampada” | “Aguarde Ate” Condição
-Condicao ::= “Robo Pronto” | “Robo Ocupado” | “Robo Parado” | “Robo Movimentando” | “Frente Robo Bloqueada” | “Direita Robo Bloqueada” | “Esquerda Robo Bloqueada” | “Lampada Acessa a Frente” |”Lampada Apagada a Frente” | “Lampada Acessa A Esquerda” | “Lampada Apagada A Esquerda” | “Lampada Acessa A Direita” | “Lampada Apagada A Direita”
-Identificador ::= Letra(Letra|Digito)*
-Numero ::= Digito*
-Letra ::= “A” | “a” | “B” | “b” | ... | “z”
-Digito ::= “0” | ... | “9”
-Sentido ::= “esquerda” | “direita”
+    Programa ::= “programainicio” Declaracao* “execucaoinicio” Comando “fimexecucao” “fimprograma”
+    Declaracao ::= “definainstrucao” identificador “como” Comando
+    Bloco ::= “inicio” Comando* ”fim”
+    Comando ::= Bloco | Iteracao | Laco | Condicional | Instrução
+    Iteracao ::= “repita” Numero “vezes” Comando “fimrepita”
+    Laço ::= “enquanto” Condicao “faca” Comando “fimpara”
+    Condicional ::= “se” Condicao “entao” Comando “fimse” [“senao” Comando “fimsenao”]
+    Instrucao ::= “mova” Numero* [“passos”] | “Vire Para” Sentido | Identificador | “Pare” | “Finalize” | “Apague Lampada”| “Acenda Lampada” | “Aguarde Ate” Condição
+    Condicao ::= “Robo Pronto” | “Robo Ocupado” | “Robo Parado” | “Robo Movimentando” | “Frente Robo Bloqueada” | “Direita Robo Bloqueada” | “Esquerda Robo Bloqueada” | “Lampada Acessa a Frente” |”Lampada Apagada a Frente” | “Lampada Acessa A Esquerda” | “Lampada Apagada A Esquerda” | “Lampada Acessa A Direita” | “Lampada Apagada A Direita”
+    Identificador ::= Letra(Letra|Digito)*
+    Numero ::= Digito*
+    Letra ::= “A” | “a” | “B” | “b” | ... | “z”
+    Digito ::= “0” | ... | “9”
+    Sentido ::= “esquerda” | “direita”
 
 ## Expressões Regulares
 
