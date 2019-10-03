@@ -184,7 +184,7 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             numero(c);
             flag = "numero";
         }
-        if ((lookahead == ' ') || (lookahead == '\0') || (lookahead == '\n') || (lookahead == '\t') || (lookahead != '#')) { // reconhece final de: token, linha.
+        if ((lookahead == ' ') || (lookahead == '\n') || (lookahead == '\t') || (lookahead != '#')) { // reconhece final de: token, linha.
             if (!palavra.empty()) {
 		            insertList();
                 flag = "Inicio";
