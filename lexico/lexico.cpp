@@ -212,7 +212,34 @@ bool createTokens() { // cria os tokens e insere na lista Lex
 }
 
 bool geraArquivo (){
-
+	for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
+	out << "(";	
+	out << iterator->line;
+	out << ",";
+	out << iterator->col_init;
+	out << ",";
+	out << iterator->col_finish;
+	out << ",";
+	out << iterator->type;
+	out << ",";
+	out << iterator->lexema;
+	out << ")";	
+	out << endl;
+    }
+	for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
+	cout << "(";	
+	cout << iterator->line;
+	cout << ",";
+	cout << iterator->col_init;
+	cout << ",";
+	cout << iterator->col_finish;
+	cout << ",";
+	cout << iterator->type;
+	cout << ",";
+	cout << iterator->lexema;
+	cout << ")";	
+	cout << endl;
+    }
     return true;
 }
 
