@@ -51,89 +51,89 @@ void comment (char letter) { // ler todos os caracteres que fazem parte dos come
 }
 
 string keyword (string lexema) {
-    if (lexema == "programainicio"){
+	string palav = string(lexema);
+	transform(palav.begin(), palav.end(), palav.begin(), ::tolower);
+    if (palav == "programainicio"){
         return "KEY";
-    } else if (lexema == "execucaoinicio"){
+    } else if (palav == "execucaoinicio"){
         return "KEY";
-    } else if (lexema == "definainstrucao"){
+    } else if (palav == "definainstrucao"){
         return "KEY";
-    } else if (lexema == "inicio"){
+    } else if (palav == "inicio"){
         return "KEY";
-    } else if (lexema == "como"){
+    } else if (palav == "como"){
         return "KEY";
-    } else if (lexema == "repita"){
+    } else if (palav == "repita"){
         return "KEY";
-    } else if (lexema == "vezes"){
+    } else if (palav == "vezes"){
         return "KEY";
-    } else if (lexema == "se"){
+    } else if (palav == "se"){
         return "KEY";
-    } else if (lexema == "entao"){
+    } else if (palav == "entao"){
         return "KEY";
-    } else if (lexema == "["){
+    } else if (palav == "["){
         return "KEY";
-    } else if (lexema == "]"){
+    } else if (palav == "]"){
         return "KEY";
-    } else if (lexema == "senao"){
+    } else if (palav == "senao"){
         return "KEY";
-    } else if (lexema == "mova"){
+    } else if (palav == "mova"){
         return "KEY";
-    } else if (lexema == "passos"){
+    } else if (palav == "passos"){
         return "KEY";
-    } else if (lexema == "Vire"){
+    } else if (palav == "vire"){
         return "KEY";
-    } else if (lexema == "Para"){
+    } else if (palav == "para"){
         return "KEY";
-    } else if (lexema == "Pare"){
+    } else if (palav == "pare"){
         return "KEY";
-    } else if (lexema == "Finalize"){
+    } else if (palav == "finalize"){
         return "KEY";
-    } else if (lexema == "Apague"){
+    } else if (palav == "apague"){
         return "KEY";
-    } else if (lexema == "Lampada"){
+    } else if (palav == "lampada"){
         return "KEY";
-    } else if (lexema == "Acenda"){
+    } else if (palav == "acenda"){
         return "KEY";
-    } else if (lexema == "Aguarde"){
+    } else if (palav == "aguarde"){
         return "KEY";
-    } else if (lexema == "Movimentando"){
+    } else if (palav == "movimentando"){
         return "KEY";
-    } else if (lexema == "Robo"){
+    } else if (palav == "robo"){
         return "KEY";
-    } else if (lexema == "Pronto"){
+    } else if (palav == "pronto"){
         return "KEY";
-    } else if (lexema == "Ocupado"){
+    } else if (palav == "ocupado"){
         return "KEY";
-    } else if (lexema == "Parado"){
+    } else if (palav == "parado"){
         return "KEY";
-    } else if (lexema == "Frente"){
+    } else if (palav == "frente"){
         return "KEY";
-    } else if (lexema == "Bloqueada"){
+    } else if (palav == "bloqueada"){
         return "KEY";
-    } else if (lexema == "Direita"){
+    } else if (palav == "direita"){
         return "KEY";
-    } else if (lexema == "Esquerda"){
+    } else if (palav == "esquerda"){
         return "KEY";
-    } else if (lexema == "Acessa"){
+    } else if (palav == "acessa"){
         return "KEY";
-    } else if (lexema == "ate"){
+    } else if (palav == "ate"){
         return "KEY";
-    } else if (lexema == "a"){
+    } else if (palav == "a"){
         return "KEY";
-    } else if (lexema == "Apagada"){
+    } else if (palav == "apagada"){
         return "KEY";
-    } else if (lexema == "A"){
+    } else if (palav == "fimsenao"){
         return "KEY";
-    } else if (lexema == "fimsenao"){
+    } else if (palav == "fimse"){
         return "KEY";
-    } else if (lexema == "fimse"){
+    } else if (palav == "fim"){
         return "KEY";
-    } else if (lexema == "fim"){
+    } else if (palav == "fimrepita"){
         return "KEY";
-    } else if (lexema == "fimrepita"){
+    } else if (palav == "fimexecucao"){
         return "KEY";
-    } else if (lexema == "fimexecucao"){
-        return "KEY";
-    } else if (lexema == "fimprograma"){
+    } else if (palav == "fimprograma"){
         return "KEY";
     }
     return "ERRO";
