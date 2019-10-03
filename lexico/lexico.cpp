@@ -191,7 +191,7 @@ bool createTokens() { // cria os tokens e insere na lista Lex
             }
         }
         if (c == '#') { // reconhece comentários
-            if (coluna != 1) {
+            if (coluna > 1) {
                 lookahead = c;
                 res = false;
                 break;
@@ -254,21 +254,10 @@ int main(int argc, char *argv[]){
         out.open(argv[2], ios::out);
     }
     result = createTokens(); // recebe a resposta se o léxico obteve um erro ou não
+    geraArquivo();
     if (!result) {
         cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << " coluna: " << coluna - (palavra.length()) << endl;
-    }
-	for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
-		out << iterator->line;
-		out << ",";
-		out << iterator->col_init;
-		out << ",";
-		out << iterator->col_finish;
-		out << ",";
-		out << iterator->type;
-		out << ",";
-		out << iterator->lexema;
-		out << endl;
-
+        cout << "(" << linha << ", " << coluna - (palavra.length()) << ", " << coluna << ", " << "ERROR" << ", " << lookahead << ")" << endl;
     }
 
     in.close();
