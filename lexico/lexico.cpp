@@ -257,7 +257,7 @@ int main(int argc, char *argv[]){
     geraArquivo();
     if (!result) {
         cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << " coluna: " << coluna - (palavra.length()) << endl;
-        cout << "(" << linha << ", " << coluna - (palavra.length()) << ", " << coluna << ", " << "ERROR" << ", " << lookahead << ")" << endl;
+        out << "(" << linha << ", " << coluna - (palavra.length()) << ", " << coluna << ", " << "ERROR" << ", " << lookahead << ")" << endl;
     }
 
     in.close();
