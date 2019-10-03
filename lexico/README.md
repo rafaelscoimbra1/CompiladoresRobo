@@ -24,7 +24,7 @@ BEGIN
   instruction code
 END
 
-# Tokens
+## Tokens
 
  - Os terminais estão descritos entre aspas duplas e em negrito.
  - O símbolo* representa zero ou mais ocorrências do não-terminal à esquerda deste símbolo.
@@ -32,7 +32,7 @@ END
  - O compilador deve aceitar palavras escritas em minúsculas ou maiúsculas.
  - Comentários são definidos em linhas iniciadas com o símbolo “#”
 
-## Token Expressão	Regular
+## Regras definidas na especificação
 
     Programa ::= “programainicio” Declaracao* “execucaoinicio” Comando “fimexecucao” “fimprograma”
     Declaracao ::= “definainstrucao” identificador “como” Comando
@@ -61,7 +61,11 @@ A expressões regulares necessária para o analizador léxico, são as descritas
 ## Atômatos finitos deterministicos para a análise léxica
 
 ![Autômato análise léxica](https://github.com/rafaelscoimbra1/CompiladoresRobo/blob/dev/lexico/lexico.svg?sanitize=true)
- 
+
+## Compilação
+
+Pra compilar o código e utilizar a análise léxica do compilador faz-se necessário executar a compilação do arquivo "lexico.ccp", o qual pode ser realizado da seguinte forma: g++ lexico.cpp -o lexico
+
 ## Execução do compilador
 
 A execução consiste em uma chamada, a qual deve ser especificado como parametros para a execução: o arquivo de entrada e o arquivo de saída, da seguinte forma: **'./compilador arquivodeentrada.robo arquivodesaida.lex'**.
@@ -69,3 +73,27 @@ A execução consiste em uma chamada, a qual deve ser especificado como parametr
 ## Arquivo de saída
 
 O arquivo de saída consiste em um arquivo '.lex', o qual detém a seguinte estrutura: (Num_Linha, Numero_Coluna_Inicial, Numero_Coluna_Final, Tipo_Token,"Lexema").
+
+## Erros
+
+Os erros são mostrados no terminal e também são salvos no arquivo .lex de saída.
+
+## Retorno do analisador léxico
+
+O retorno do analisador léxico pode ser verificado nas imagens abaixo:
+
+### Acertos
+
+![Acerto 1](imagens/print-acerto/print-in1.png)
+![Acerto 1](imagens/print-acerto/print-lex-in1.png)
+![Acerto 1](imagens/print-acerto/print-in2.png)
+![Acerto 1](imagens/print-acerto/print-lex-in2.png)
+
+### Erros
+
+![Acerto 1](imagens/print-erro/print-erro1.png)
+![Acerto 1](imagens/print-acerto/print-lex-erro1.png)
+![Acerto 1](imagens/print-erro/print-erro2.png)
+![Acerto 1](imagens/print-acerto/print-lex-erro2.png)
+![Acerto 1](imagens/print-erro/print-erro3.png)
+![Acerto 1](imagens/print-acerto/print-lex-erro3.png)
