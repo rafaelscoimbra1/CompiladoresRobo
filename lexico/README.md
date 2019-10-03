@@ -60,7 +60,7 @@ A expressões regulares necessária para o analizador léxico, são as descritas
 
 ## Atômatos finitos deterministicos para a análise léxica
 
-![Autômato análise léxica](https://github.com/rafaelscoimbra1/CompiladoresRobo/blob/dev/lexico/lexico.svg?sanitize=true)
+![Autômato análise léxica](lexico.svg?sanitize=true)
 
 ## Compilação
 
@@ -92,8 +92,8 @@ O retorno do analisador léxico pode ser verificado nas imagens abaixo:
 ### Erros
 
 ![Erro 1](imagens/print-erro/print-erro1.png)
-![Erro 1 lex](imagens/print-acerto/print-lex-erro1.png)
+![Erro 1 lex](imagens/print-erro/print-lex-erro1.png)
 ![Erro 2](imagens/print-erro/print-erro2.png)
-![Erro 2 lex](imagens/print-acerto/print-lex-erro2.png)
+![Erro 2 lex](imagens/print-erro/print-lex-erro2.png)
 ![Erro 3](imagens/print-erro/print-erro3.png)
-![Erro 3 lex](imagens/print-acerto/print-lex-erro3.png)
+![Erro 3 lex](imagens/print-erro/print-lex-erro3.png)
