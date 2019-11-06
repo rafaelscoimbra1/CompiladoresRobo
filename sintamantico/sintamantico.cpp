@@ -235,21 +235,37 @@ void geraArquivo (){
 }
 
 void gerarArvore(){
-    char flag = 'x';
+    char flag1 = 'x';
+    char flag2 = 'x';
     for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator){
         string p = string(iterator->lexema);
         transform(p.begin(), p.end(), p.begin(), ::tolower);
-        cout << p << '\n';
-        if(p == "programainicio" || flag == 'P'){
-          cout << "2" << '\n';
-          flag='P';
+        // cout << p << '\n';
+        if(p == "programainicio" || flag1 == 'P'){
+          // cout << "2" << '\n';
+          flag1 = 'P';
           Node n1 = (Node) malloc (sizeof(struct node));
           n1->no.lexema = iterator->lexema;
           n1->no.type = iterator->type;
           n1->no.line = iterator->line;
           n1->no.col_init = iterator->col_init;
           n1->no.col_finish = iterator->col_finish;
-          // if(){}
+          if(p == "definainstrucao" || flag2 == 'D'){
+            flag2 = 'D';
+            n1->no.lexema = iterator->lexema;
+            n1->no.type = iterator->type;
+            n1->no.line = iterator->line;
+            n1->no.col_init = iterator->col_init;
+            n1->no.col_finish = iterator->col_finish;
+            // cout << n1->no.lexema << endl;
+            if (p == "definainstrucao" || flag2 == 'D') {
+
+            }
+          }// TEM QUE VER COMO MELHORAR ESSE ELSE
+          // else if(p != "definainstrucao"){
+          //   cout << "Erro Sintatico na coluna " << iterator->col_init << " e linha " << iterator->line << ", token esperado DEFINAINSTRUCAO, token encontrado " <<  iterator->lexema << endl;
+          //   break;
+          // }
         }
         else if(p != "programainicio"){
           cout << "Erro Sintatico na coluna " << iterator->col_init << " e linha " << iterator->line << ", token esperado PROGRAMAINICIO, token encontrado " <<  iterator->lexema << endl;
