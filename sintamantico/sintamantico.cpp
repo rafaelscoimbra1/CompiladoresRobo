@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+#include <stack>
 #include <list>
 
 using namespace std;
@@ -14,21 +16,32 @@ char lookahead;
 string palavra;
 string flag = "Inicial";
 
-typedef struct token {
-    string lexema;
-    string type;
+typedef struct token {   
     int line;
+    string type;
     int col_init;
+    string lexema;
     int col_finish;
 }token;
 
-typedef struct node {
+typedef struct lista {
     struct token no;
-    struct token *filhos[8];
+    struct lista *ant;
+    struct lista *prox;
+}lista, *Lista;
+
+typedef struct node {
+    int nivel = 0;
+    int nfilhos = 0;
+    struct token no;
+    struct node *filhos[8];
 }node, *Node;
 
-list<token> lex;
 Node arvore;
+list<token> lex;
+Lista lexico = NULL;
+stack<string> estados;
+stack<token> sintatico;
 
 /*Função que ler os caracteres de um id e insere na variável 'palavra', a qual é o token final*/
 void id (char letter) { // ler todas as letras
@@ -171,6 +184,23 @@ void insertList () { // insere o novo lexema (token) na lista
     type = typeToken();
     word.type = string(type);
 
+    /* Lista para inserir os tokens */
+    Lista i = NULL;
+    Lista c = (Lista) malloc(sizeof(struct lista));
+
+    if (lexico){
+        for (i = lexico; (lexico->prox); i = lexico->prox);
+        c->no = word;
+        i->prox = c;
+        c->ant = i;
+        c->prox=NULL;
+    }else {
+        c->no = word;
+        c->prox = NULL;
+        c->ant = NULL;
+        lexico = c;
+    }
+
     lex.push_back(word);
     palavra = "";
 }
@@ -234,14 +264,41 @@ void geraArquivo (){
     }
 }
 
+/* Autômato com 2 Pilhas */
+void Programa(Lista *l, char estado) {
+    if (l->no.lexema == "programainicio" && estado == "e1") {
+        sintatico.push(l->no);
+        estados.push("e1");
+        if (l->prox->no.lexema == "execucaoinicio" && estado == "e1"){
+            return;
+        }else if (l->prox->no.lexema == "definainstrucao"){
+            
+        }
+    }else {
+        //erro sintatico
+    }
+}
+
+void estado1 (){
+
+}
+
+// Criar os estados a partir do slr e não de acordo com as regras.
+
+//gerar os estados do slr para serrem usados na implementação
+
 void gerarArvore(){
     char flag1 = 'x';
     char flag2 = 'x';
-    for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator){
-        string p = string(iterator->lexema);
-        transform(p.begin(), p.end(), p.begin(), ::tolower);
+    Lista i;
+    //for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator){
+    for (i = lexico; (i); i = i->prox){
+        //sintatico.push(iterator)
+        //string p = string(i->no.lexema);
+        //sintatico.push(i->no);
+        //estados.push("e1");
         // cout << p << '\n';
-        if(p == "programainicio" || flag1 == 'P'){
+        /*if(p == "programainicio" || flag1 == 'P'){
           // cout << "2" << '\n';
           flag1 = 'P';
           Node n1 = (Node) malloc (sizeof(struct node));
@@ -270,7 +327,8 @@ void gerarArvore(){
         else if(p != "programainicio"){
           cout << "Erro Sintatico na coluna " << iterator->col_init << " e linha " << iterator->line << ", token esperado PROGRAMAINICIO, token encontrado " <<  iterator->lexema << endl;
           break;
-        }
+        }*/
+        Programa(&i, "e1");
     }
 }
 
