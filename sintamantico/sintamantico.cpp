@@ -42,6 +42,7 @@ list<token> lex;
 Lista lexico = NULL;
 stack<string> estados;
 stack<token> sintatico;
+int cont;
 
 /*Função que ler os caracteres de um id e insere na variável 'palavra', a qual é o token final*/
 void id (char letter) { // ler todas as letras
@@ -265,9 +266,10 @@ void geraArquivo (){
 }
 
 /* Autômato com 2 Pilhas */
-void Programa(Lista *l, char estado) {
+void estado1(Lista *l, char estado) {
     if (l->no.lexema == "programainicio" && estado == "e1") {
         sintatico.push(l->no);
+        int cont++;
         estados.push("e1");
         if (l->prox->no.lexema == "execucaoinicio" && estado == "e1"){
             return;
@@ -279,8 +281,8 @@ void Programa(Lista *l, char estado) {
     }
 }
 
-void estado1 (){
-
+void estado2 (){
+    
 }
 
 // Criar os estados a partir do slr e não de acordo com as regras.
@@ -291,8 +293,8 @@ void gerarArvore(){
     char flag1 = 'x';
     char flag2 = 'x';
     Lista i;
+
     //for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator){
-    for (i = lexico; (i); i = i->prox){
         //sintatico.push(iterator)
         //string p = string(i->no.lexema);
         //sintatico.push(i->no);
@@ -328,7 +330,12 @@ void gerarArvore(){
           cout << "Erro Sintatico na coluna " << iterator->col_init << " e linha " << iterator->line << ", token esperado PROGRAMAINICIO, token encontrado " <<  iterator->lexema << endl;
           break;
         }*/
-        Programa(&i, "e1");
+    //}
+    for (i = lexico; (i); i = i->prox){
+        if (estado == "e1")
+            estado1(&i, "e1");
+        if (estado == "e2")
+            estado2(&i, "e2");
     }
 }
 
