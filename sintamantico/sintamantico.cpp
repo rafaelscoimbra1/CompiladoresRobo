@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <iostream>
+#include <cstdlib>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -14,6 +15,8 @@ int linha = 1;
 int coluna = 0;
 char lookahead;
 string palavra;
+//string estado;
+int cont[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; 
 string flag = "Inicial";
 
 typedef struct token {   
@@ -92,10 +95,6 @@ string keyword (string lexema) {
     } else if (palav == "se"){
         return "KEY";
     } else if (palav == "entao"){
-        return "KEY";
-    } else if (palav == "["){
-        return "KEY";
-    } else if (palav == "]"){
         return "KEY";
     } else if (palav == "senao"){
         return "KEY";
@@ -265,77 +264,70 @@ void geraArquivo (){
     }
 }
 
-/* Autômato com 2 Pilhas */
-void estado1(Lista *l, char estado) {
-    if (l->no.lexema == "programainicio" && estado == "e1") {
-        sintatico.push(l->no);
-        int cont++;
+/* Estado 1 - ler o inicioprograma */
+void estado1(Lista *l, string estado) {
+    if (estado == "r1")
+        goto r1;
+    if (estado == "e1")
+        goto e1;
+    e1:
+    if ((*l)->no.lexema == "programainicio" && estado == "e1") {
+        sintatico.push((*l)->no);
+        cont[0]++;
         estados.push("e1");
-        if (l->prox->no.lexema == "execucaoinicio" && estado == "e1"){
-            return;
-        }else if (l->prox->no.lexema == "definainstrucao"){
-            
-        }
+        estado = "e2";
+        goto e1fim;
     }else {
-        //erro sintatico
+        printf("erro sintático sem programainicio");
+        goto e1fim;
     }
+    r1:
+    if ((*l)->no.lexema == "fimprograma"){
+        if (cont[0] > 5){
+            if (arvore){
+                Node aux;
+                aux = (Node) malloc(sizeof(struct node));
+                aux->no = (*l)->no;
+                aux->nivel = 0;
+                aux->nfilhos = cont[0];
+                if (sintatico.top().lexema == "definainstrucao"){
+                    aux->filhos[0] = arvore;
+                    arvore = aux;
+                }else {
+                }
+            }
+        }
+        
+        goto e1fim;
+    }
+    e1fim:
 }
 
-void estado2 (){
+void estado2 (Lista *l, string estado){
+    
+}
+
+void estadox (){
     
 }
 
 // Criar os estados a partir do slr e não de acordo com as regras.
 
 //gerar os estados do slr para serrem usados na implementação
-
-void gerarArvore(){
-    char flag1 = 'x';
-    char flag2 = 'x';
+/* Autômato com 2 Pilhas */
+void automato(){
     Lista i;
+    string estado = "e1";
 
-    //for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator){
-        //sintatico.push(iterator)
-        //string p = string(i->no.lexema);
-        //sintatico.push(i->no);
-        //estados.push("e1");
-        // cout << p << '\n';
-        /*if(p == "programainicio" || flag1 == 'P'){
-          // cout << "2" << '\n';
-          flag1 = 'P';
-          Node n1 = (Node) malloc (sizeof(struct node));
-          n1->no.lexema = iterator->lexema;
-          n1->no.type = iterator->type;
-          n1->no.line = iterator->line;
-          n1->no.col_init = iterator->col_init;
-          n1->no.col_finish = iterator->col_finish;
-          if(p == "definainstrucao" || flag2 == 'D'){
-            flag2 = 'D';
-            n1->no.lexema = iterator->lexema;
-            n1->no.type = iterator->type;
-            n1->no.line = iterator->line;
-            n1->no.col_init = iterator->col_init;
-            n1->no.col_finish = iterator->col_finish;
-            // cout << n1->no.lexema << endl;
-            if (p == "definainstrucao" || flag2 == 'D') {
-
-            }
-          }// TEM QUE VER COMO MELHORAR ESSE ELSE
-          // else if(p != "definainstrucao"){
-          //   cout << "Erro Sintatico na coluna " << iterator->col_init << " e linha " << iterator->line << ", token esperado DEFINAINSTRUCAO, token encontrado " <<  iterator->lexema << endl;
-          //   break;
-          // }
-        }
-        else if(p != "programainicio"){
-          cout << "Erro Sintatico na coluna " << iterator->col_init << " e linha " << iterator->line << ", token esperado PROGRAMAINICIO, token encontrado " <<  iterator->lexema << endl;
-          break;
-        }*/
-    //}
     for (i = lexico; (i); i = i->prox){
-        if (estado == "e1")
-            estado1(&i, "e1");
-        if (estado == "e2")
-            estado2(&i, "e2");
+        if (estado == "e1"){
+            calle1:
+            estado1(&i, estado);
+        }
+        if (estado == "e2"){
+            calle2:
+            estado2(&i, estado);
+        }
     }
 }
 
@@ -352,25 +344,11 @@ int main(int argc, char *argv[]){
     result = createTokens(); // recebe a resposta se o léxico obteve um erro ou não
     geraArquivo();
 
-    // for (list<token>::const_iterator iterator = lex.begin(), end = lex.end(); iterator != end; ++iterator) {
-		// cout << iterator->line;
-		// cout << ",";
-		// cout << iterator->col_init;
-		// cout << ",";
-		// cout << iterator->col_finish;
-		// cout << ",";
-		// cout << iterator->type;
-		// cout << ",";
-		// cout << iterator->lexema;
-		// cout << endl;
-    //
-    // }
-
     if (!result) {
         cout << "ERRO [Lexico], caracter: " << lookahead << " linha: " << linha << " coluna: " << coluna - (palavra.length()) << endl;
         out << "(" << linha << ", " << coluna - (palavra.length()) << ", " << coluna << ", " << "ERROR, " << lookahead << endl;
     }
-    gerarArvore();
+    automato();
     in.close();
     out.close();
     return 0;
