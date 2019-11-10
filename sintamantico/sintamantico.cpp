@@ -265,46 +265,71 @@ void geraArquivo (){
 }
 
 /* Estado 1 - ler o inicioprograma */
-void estado1(Lista *l, string estado) {
+void estado1(Lista l, string estado) {
+    string lixo;
+    token q;
     if (estado == "r1")
         goto r1;
-    if (estado == "e1")
-        goto e1;
-    e1:
-    if ((*l)->no.lexema == "programainicio" && estado == "e1") {
-        sintatico.push((*l)->no);
+    if (estado == "s1")
+        goto s1;
+    s1:
+    if (l->no.lexema == "programainicio" && estado == "s1") {
+        sintatico.push(l->no);
         cont[0]++;
-        estados.push("e1");
-        estado = "e2";
-        goto e1fim;
+        estados.push("s1");
+        estado = "s2";
+        if (l->no.lexema == "execucaoinicio"){
+            estado = "r1";
+            goto s1fim;
+        }
+        goto s1fim;
     }else {
         printf("erro sintático sem programainicio");
-        goto e1fim;
+        goto s1fim;
     }
     r1:
-    if ((*l)->no.lexema == "fimprograma"){
+    if (sintatico.top().lexema == "programainicio" && l->no.lexema == "execucaoinicio"){
+        if (arvore){
+            if (arvore->no.lexema == "definainstrucao"){
+                Node aux;
+                aux = (Node) malloc(sizeof(struct node));
+                q = sintatico.pop();
+                aux->no = sintatico.pop();
+            }
+        }
+    }
+    if (l->no.lexema == "fimprograma"){
         if (cont[0] > 5){
             if (arvore){
                 Node aux;
                 aux = (Node) malloc(sizeof(struct node));
-                aux->no = (*l)->no;
+                aux->no = l->no;
                 aux->nivel = 0;
                 aux->nfilhos = cont[0];
-                if (sintatico.top().lexema == "definainstrucao"){
+                if (l->no.lexema == "definainstrucao"){
                     aux->filhos[0] = arvore;
                     arvore = aux;
                 }else {
                 }
             }
         }
-        
-        goto e1fim;
+        goto s1fim;
     }
-    e1fim:
+    s1fim:
 }
 
-void estado2 (Lista *l, string estado){
-    
+void estado2 (Lista l, string estado){
+    if (estado == "s2")
+        goto s2;
+    if (estado == "r2")
+        goto r2;
+    s2:
+    if (l->no.lexema == "definainstrucao"){
+        estado = "s2";
+        sintatico.push(l->no);
+        estados.push("s2");
+    }
+    r2:
 }
 
 void estadox (){
@@ -317,16 +342,16 @@ void estadox (){
 /* Autômato com 2 Pilhas */
 void automato(){
     Lista i;
-    string estado = "e1";
+    string estado = "s1";
 
     for (i = lexico; (i); i = i->prox){
-        if (estado == "e1"){
+        if (estado == "s1"){
             calle1:
-            estado1(&i, estado);
+            estado1(i, estado);
         }
-        if (estado == "e2"){
+        if (estado == "s2"){
             calle2:
-            estado2(&i, estado);
+            estado2(i, estado);
         }
     }
 }
