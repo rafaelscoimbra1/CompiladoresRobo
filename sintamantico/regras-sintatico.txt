@@ -1,0 +1,45 @@
+PROGRAMA -> programainicio DECLARACAO execucaoinicio COMANDO fimexecucao fimprograma
+DECLARACAO -> definainstrucao ID como COMANDO
+DECLARACAO -> ''
+BLOCO -> inicio COMANDOB fim
+COMANDOB -> COMANDO
+COMANDOB -> ''
+COMANDO -> BLOCO
+COMANDO -> ITERACAO
+COMANDO -> LACO
+COMANDO -> CONDICIONAL
+COMANDO -> INSTRUCAO
+ITERACAO -> repita Numero vezes COMANDO fimrepita
+LACO -> enquanto CONDICAO faca COMANDO fimpara
+CONDICIONAL -> se CONDICAO entao COMANDO fimse STM
+STM -> senao COMANDO fimsenao
+STM -> ''
+INSTRUCAO -> mova NUMERO
+INSTRUCAO -> vire para SENTIDO
+INSTRUCAO -> ID
+INSTRUCAO -> pare
+INSTRUCAO -> finalize
+INSTRUCAO -> apague lampada
+INSTRUCAO -> acenda lampada
+INSTRUCAO -> aguarde ate CONDICAO
+CONDICAO -> robo pronto
+CONDICAO -> robo ocupado
+CONDICAO -> robo parado
+CONDICAO -> robo movimentando
+CONDICAO -> frente robo bloqueada
+CONDICAO -> direita robo bloqueada
+CONDICAO -> esquerda robo bloqueada
+CONDICAO -> lampada acessa a frente
+CONDICAO -> lampada apagada a frente
+CONDICAO -> lampada acessa a esquerda
+CONDICAO -> lampada apagada a esquerda
+CONDICAO -> lampada acessa a direita
+CONDICAO -> lampada apagada a direita
+ID -> letra
+ID -> numero
+NUMERO -> DIGITO PASSO
+NUMERO -> ''
+PASSO -> passos
+DIGITO -> numero
+SENTIDO -> esquerda
+SENTIDO -> direita
