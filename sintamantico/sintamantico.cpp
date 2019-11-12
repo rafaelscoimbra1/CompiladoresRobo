@@ -16,8 +16,10 @@ int coluna = 0;
 char lookahead;
 string palavra;
 //string estado;
-int cont[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; 
+int cont[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 string flag = "Inicial";
+string table[88][46] = {"State", "programainicio", "execucaoinicio", "fimexecucao", "fimprograma", "definainstrucao", "como", "inicio", "fim", "repita", "vezes", "fimrepita", "enquanto", "faca", "fimpara", "se", "entao", "fimse", "senao", "fimsenao", "mova", "vire", "para", "pare", "finalize", "apague", "lampada", "acenda", "aguarde", "ate", "robo", "pronto", "ocupado", "parado", "movimentando", "frente", "bloqueada", "direita", "esquerda", "acessa", "a", "apagada", "letra", "numero", "passos", "$", "0", "s1", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "1", "", "r2", "", "", "s3", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "2", "", "s4", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "3", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "s6", "s7", "", "", "4", "", "", "", "", "", "", "s14", "", "s15", "", "", "s16", "", "", "s17", "", "", "", "", "s18", "s19", "", "s21", "s22", "s23", "", "s24", "s25", "", "", "", "", "", "", "", "", "", "", "", "", "", "s6", "s7", "", "",
+};
 
 typedef struct token {   
     int line;
