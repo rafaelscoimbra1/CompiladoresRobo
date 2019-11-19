@@ -137,4 +137,50 @@ programainicio	execucaoinicio	fimexecucao	fimprograma	definainstrucao	como	inici
 83	 	r13	r13	 	 	 	 	r13	 	 	r13	 	 	r13	 	 	r13	 	r13	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
 84	 	 	 	 	 	 	s14	 	s15	 	 	s16	 	 	s17	 	 	 	 	s18	s19	 	s21	s22	s23	 	s24	s25	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	9	 	85	10	11	12	 	13	 	20	 	 	 	 
 85	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s86	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-86	 	r14	r14	 	 	 	 	r14	 	 	r14	 	 	r14	 	 	r14	 	r14	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
+86	 	r14	r14	 	 	 	 	r14	 	 	r14	 	 	r14	 	 	r14	 	r14	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
+-------------
+Segunda forma
+
+PROGRAMA -> programainicio DECLARACAO execucaoinicio COMANDO fimexecucao fimprograma
+DECLARACAO -> definainstrucao ID como COMANDO
+DECLARACAO -> ''
+BLOCO -> inicio COMANDOB fim
+COMANDOB -> COMANDO
+COMANDOB -> ''
+COMANDO -> BLOCO
+COMANDO -> ITERACAO
+COMANDO -> LACO
+COMANDO -> CONDICIONAL
+COMANDO -> INSTRUCAO
+ITERACAO -> repita DIGITO vezes COMANDO fimrepita
+LACO -> enquanto CONDICAO faca COMANDO fimpara
+CONDICIONAL -> se CONDICAO entao COMANDO fimse STM
+STM -> senao COMANDO fimsenao
+STM -> ''
+INSTRUCAO -> mova NUM
+NUM -> DIGITO passos
+NUM -> ''
+INSTRUCAO -> vire para SENTIDO
+INSTRUCAO -> ID
+INSTRUCAO -> pare
+INSTRUCAO -> finalize
+INSTRUCAO -> apague lampada
+INSTRUCAO -> acenda lampada
+INSTRUCAO -> aguarde ate CONDICAO
+CONDICAO -> robo pronto
+CONDICAO -> robo ocupado
+CONDICAO -> robo parado
+CONDICAO -> robo movimentando
+CONDICAO -> frente robo bloqueada
+CONDICAO -> direita robo bloqueada
+CONDICAO -> esquerda robo bloqueada
+CONDICAO -> lampada acessa a frente
+CONDICAO -> lampada apagada a frente
+CONDICAO -> lampada acessa a esquerda
+CONDICAO -> lampada apagada a esquerda
+CONDICAO -> lampada acessa a direita
+CONDICAO -> lampada apagada a direita
+NUMERO -> DIGITO
+DIGITO -> numero
+SENTIDO -> esquerda
+SENTIDO -> direita
