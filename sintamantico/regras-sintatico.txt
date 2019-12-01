@@ -1,186 +1,37 @@
-PROGRAMA -> programainicio DECLARACAO execucaoinicio COMANDO fimexecucao fimprograma
-DECLARACAO -> definainstrucao ID como COMANDO
-DECLARACAO -> ''
-BLOCO -> inicio COMANDOB fim
-COMANDOB -> COMANDO
-COMANDOB -> ''
-COMANDO -> BLOCO
-COMANDO -> ITERACAO
-COMANDO -> LACO
-COMANDO -> CONDICIONAL
-COMANDO -> INSTRUCAO
-ITERACAO -> repita DIGITO vezes COMANDO fimrepita
-LACO -> enquanto CONDICAO faca COMANDO fimpara
-CONDICIONAL -> se CONDICAO entao COMANDO fimse STM
-STM -> senao COMANDO fimsenao
-STM -> ''
-INSTRUCAO -> mova NUMERO
-INSTRUCAO -> vire para SENTIDO
-INSTRUCAO -> ID
-INSTRUCAO -> pare
-INSTRUCAO -> finalize
-INSTRUCAO -> apague lampada
-INSTRUCAO -> acenda lampada
-INSTRUCAO -> aguarde ate CONDICAO
-CONDICAO -> robo pronto
-CONDICAO -> robo ocupado
-CONDICAO -> robo parado
-CONDICAO -> robo movimentando
-CONDICAO -> frente robo bloqueada
-CONDICAO -> direita robo bloqueada
-CONDICAO -> esquerda robo bloqueada
-CONDICAO -> lampada acessa a frente
-CONDICAO -> lampada apagada a frente
-CONDICAO -> lampada acessa a esquerda
-CONDICAO -> lampada apagada a esquerda
-CONDICAO -> lampada acessa a direita
-CONDICAO -> lampada apagada a direita
-ID -> letra
-ID -> numero
-NUMERO -> DIGITO PASSO
-NUMERO -> ''
-PASSO -> passos
-DIGITO -> numero
-DIGITO -> ''
-SENTIDO -> esquerda
-SENTIDO -> direita
-
-
------- Tabela ------
-
-LR table
-State	ACTION	GOTO
-programainicio	execucaoinicio	fimexecucao	fimprograma	definainstrucao	como	inicio	fim	repita	vezes	fimrepita	enquanto	faca	fimpara	se	entao	fimse	senao	fimsenao	mova	vire	para	pare	finalize	apague	lampada	acenda	aguarde	ate	robo	pronto	ocupado	parado	movimentando	frente	bloqueada	direita	esquerda	acessa	a	apagada	letra	numero	passos	$	PROGRAMA	DECLARACAO	BLOCO	COMANDOB	COMANDO	ITERACAO	LACO	CONDICIONAL	STM	INSTRUCAO	CONDICAO	ID	NUMERO	PASSO	DIGITO	SENTIDO
-0	s1	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-1	 	r2	 	 	s3	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	2	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-2	 	s4	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-3	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	 	 	 	 	 	 	 	 	 	5	 	 	 	 
-4	 	 	 	 	 	 	s14	 	s15	 	 	s16	 	 	s17	 	 	 	 	s18	s19	 	s21	s22	s23	 	s24	s25	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	9	 	8	10	11	12	 	13	 	20	 	 	 	 
-5	 	 	 	 	 	s26	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-6	 	r37	r37	 	 	r37	 	r37	 	 	r37	 	 	r37	 	 	r37	 	r37	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-7	 	r38	r38	 	 	r38	 	r38	 	 	r38	 	 	r38	 	 	r38	 	r38	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-8	 	 	s27	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-9	 	r6	r6	 	 	 	 	r6	 	 	r6	 	 	r6	 	 	r6	 	r6	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-10	 	r7	r7	 	 	 	 	r7	 	 	r7	 	 	r7	 	 	r7	 	r7	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-11	 	r8	r8	 	 	 	 	r8	 	 	r8	 	 	r8	 	 	r8	 	r8	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-12	 	r9	r9	 	 	 	 	r9	 	 	r9	 	 	r9	 	 	r9	 	r9	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-13	 	r10	r10	 	 	 	 	r10	 	 	r10	 	 	r10	 	 	r10	 	r10	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-14	 	 	 	 	 	 	s14	r5	s15	 	 	s16	 	 	s17	 	 	 	 	s18	s19	 	s21	s22	s23	 	s24	s25	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	9	28	29	10	11	12	 	13	 	20	 	 	 	 
-15	 	 	 	 	 	 	 	 	 	r43	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s31	r43	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	30	 
-16	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s37	 	 	 	s33	 	 	 	 	s34	 	s35	s36	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	32	 	 	 	 	 
-17	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s37	 	 	 	s33	 	 	 	 	s34	 	s35	s36	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	38	 	 	 	 	 
-18	 	r40	r40	 	 	 	 	r40	 	r43	r40	 	 	r40	 	 	r40	 	r40	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s31	r43	 	 	 	 	 	 	 	 	 	 	 	 	 	39	 	40	 
-19	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s41	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-20	 	r18	r18	 	 	 	 	r18	 	 	r18	 	 	r18	 	 	r18	 	r18	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-21	 	r19	r19	 	 	 	 	r19	 	 	r19	 	 	r19	 	 	r19	 	r19	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-22	 	r20	r20	 	 	 	 	r20	 	 	r20	 	 	r20	 	 	r20	 	r20	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-23	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s42	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-24	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s43	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-25	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s44	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-26	 	 	 	 	 	 	s14	 	s15	 	 	s16	 	 	s17	 	 	 	 	s18	s19	 	s21	s22	s23	 	s24	s25	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	9	 	45	10	11	12	 	13	 	20	 	 	 	 
-27	 	 	 	s46	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-28	 	 	 	 	 	 	 	s47	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-29	 	 	 	 	 	 	 	r4	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-30	 	 	 	 	 	 	 	 	 	s48	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-31	 	 	 	 	 	 	 	 	 	r42	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	r42	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-32	 	 	 	 	 	 	 	 	 	 	 	 	s49	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-33	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s50	s51	s52	s53	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-34	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s54	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-35	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s55	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-36	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s56	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-37	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s57	 	s58	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-38	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s59	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-39	 	r16	r16	 	 	 	 	r16	 	 	r16	 	 	r16	 	 	r16	 	r16	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-40	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s61	 	 	 	 	 	 	 	 	 	 	 	 	 	 	60	 	 
-41	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s64	s63	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	62
-42	 	r21	r21	 	 	 	 	r21	 	 	r21	 	 	r21	 	 	r21	 	r21	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-43	 	r22	r22	 	 	 	 	r22	 	 	r22	 	 	r22	 	 	r22	 	r22	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-44	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s37	 	 	 	s33	 	 	 	 	s34	 	s35	s36	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	65	 	 	 	 	 
-45	 	r1	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-46	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	acc	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-47	 	r3	r3	 	 	 	 	r3	 	 	r3	 	 	r3	 	 	r3	 	r3	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-48	 	 	 	 	 	 	s14	 	s15	 	 	s16	 	 	s17	 	 	 	 	s18	s19	 	s21	s22	s23	 	s24	s25	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	9	 	66	10	11	12	 	13	 	20	 	 	 	 
-49	 	 	 	 	 	 	s14	 	s15	 	 	s16	 	 	s17	 	 	 	 	s18	s19	 	s21	s22	s23	 	s24	s25	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	9	 	67	10	11	12	 	13	 	20	 	 	 	 
-50	 	r24	r24	 	 	 	 	r24	 	 	r24	 	r24	r24	 	r24	r24	 	r24	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-51	 	r25	r25	 	 	 	 	r25	 	 	r25	 	r25	r25	 	r25	r25	 	r25	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-52	 	r26	r26	 	 	 	 	r26	 	 	r26	 	r26	r26	 	r26	r26	 	r26	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-53	 	r27	r27	 	 	 	 	r27	 	 	r27	 	r27	r27	 	r27	r27	 	r27	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-54	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s68	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-55	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s69	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-56	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s70	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-57	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s71	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-58	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s72	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-59	 	 	 	 	 	 	s14	 	s15	 	 	s16	 	 	s17	 	 	 	 	s18	s19	 	s21	s22	s23	 	s24	s25	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	9	 	73	10	11	12	 	13	 	20	 	 	 	 
-60	 	r39	r39	 	 	 	 	r39	 	 	r39	 	 	r39	 	 	r39	 	r39	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-61	 	r41	r41	 	 	 	 	r41	 	 	r41	 	 	r41	 	 	r41	 	r41	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-62	 	r17	r17	 	 	 	 	r17	 	 	r17	 	 	r17	 	 	r17	 	r17	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-63	 	r44	r44	 	 	 	 	r44	 	 	r44	 	 	r44	 	 	r44	 	r44	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-64	 	r45	r45	 	 	 	 	r45	 	 	r45	 	 	r45	 	 	r45	 	r45	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-65	 	r23	r23	 	 	 	 	r23	 	 	r23	 	 	r23	 	 	r23	 	r23	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-66	 	 	 	 	 	 	 	 	 	 	s74	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-67	 	 	 	 	 	 	 	 	 	 	 	 	 	s75	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-68	 	r28	r28	 	 	 	 	r28	 	 	r28	 	r28	r28	 	r28	r28	 	r28	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-69	 	r29	r29	 	 	 	 	r29	 	 	r29	 	r29	r29	 	r29	r29	 	r29	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-70	 	r30	r30	 	 	 	 	r30	 	 	r30	 	r30	r30	 	r30	r30	 	r30	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-71	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s76	 	s78	s77	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-72	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s79	 	s81	s80	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-73	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s82	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-74	 	r11	r11	 	 	 	 	r11	 	 	r11	 	 	r11	 	 	r11	 	r11	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-75	 	r12	r12	 	 	 	 	r12	 	 	r12	 	 	r12	 	 	r12	 	r12	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-76	 	r31	r31	 	 	 	 	r31	 	 	r31	 	r31	r31	 	r31	r31	 	r31	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-77	 	r33	r33	 	 	 	 	r33	 	 	r33	 	r33	r33	 	r33	r33	 	r33	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-78	 	r35	r35	 	 	 	 	r35	 	 	r35	 	r35	r35	 	r35	r35	 	r35	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-79	 	r32	r32	 	 	 	 	r32	 	 	r32	 	r32	r32	 	r32	r32	 	r32	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-80	 	r34	r34	 	 	 	 	r34	 	 	r34	 	r34	r34	 	r34	r34	 	r34	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-81	 	r36	r36	 	 	 	 	r36	 	 	r36	 	r36	r36	 	r36	r36	 	r36	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-82	 	r15	r15	 	 	 	 	r15	 	 	r15	 	 	r15	 	 	r15	s84	r15	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	83	 	 	 	 	 	 	 
-83	 	r13	r13	 	 	 	 	r13	 	 	r13	 	 	r13	 	 	r13	 	r13	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-84	 	 	 	 	 	 	s14	 	s15	 	 	s16	 	 	s17	 	 	 	 	s18	s19	 	s21	s22	s23	 	s24	s25	 	 	 	 	 	 	 	 	 	 	 	 	 	s6	s7	 	 	 	 	9	 	85	10	11	12	 	13	 	20	 	 	 	 
-85	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	s86	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
-86	 	r14	r14	 	 	 	 	r14	 	 	r14	 	 	r14	 	 	r14	 	r14	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 
--------------
-Segunda forma
-
-PROGRAMA -> programainicio DECLARACAO execucaoinicio COMANDO fimexecucao fimprograma
-DECLARACAO -> definainstrucao ID como COMANDO
-DECLARACAO -> ''
-BLOCO -> inicio COMANDOB fim
-COMANDOB -> COMANDO
-COMANDOB -> ''
-COMANDO -> BLOCO
-COMANDO -> ITERACAO
-COMANDO -> LACO
-COMANDO -> CONDICIONAL
-COMANDO -> INSTRUCAO
-ITERACAO -> repita DIGITO vezes COMANDO fimrepita
-LACO -> enquanto CONDICAO faca COMANDO fimpara
-CONDICIONAL -> se CONDICAO entao COMANDO fimse STM
-STM -> senao COMANDO fimsenao
-STM -> ''
-INSTRUCAO -> mova NUM
-NUM -> DIGITO passos
-NUM -> ''
-INSTRUCAO -> vire para SENTIDO
-INSTRUCAO -> ID
-INSTRUCAO -> pare
-INSTRUCAO -> finalize
-INSTRUCAO -> apague lampada
-INSTRUCAO -> acenda lampada
-INSTRUCAO -> aguarde ate CONDICAO
-CONDICAO -> robo pronto
-CONDICAO -> robo ocupado
-CONDICAO -> robo parado
-CONDICAO -> robo movimentando
-CONDICAO -> frente robo bloqueada
-CONDICAO -> direita robo bloqueada
-CONDICAO -> esquerda robo bloqueada
-CONDICAO -> lampada acessa a frente
-CONDICAO -> lampada apagada a frente
-CONDICAO -> lampada acessa a esquerda
-CONDICAO -> lampada apagada a esquerda
-CONDICAO -> lampada acessa a direita
-CONDICAO -> lampada apagada a direita
-NUMERO -> DIGITO
-DIGITO -> numero
-SENTIDO -> esquerda
-SENTIDO -> direita
+Programa -> programainicio ListaDeclaracao execucaoinicio ListaComando fimexecucao fimprograma
+Declaracao -> definainstrucao ID como Comando
+ListaDeclaracao -> Declaracao ListaDeclaracao
+ListaDeclaracao -> ''
+Comando -> Bloco
+Comando -> Iteracao
+Comando -> Laco
+Comando -> Condicional
+Comando -> Instrucao
+ListaComando -> Comando ListaComando
+ListaComando -> ''
+Bloco -> inicio ListaComando fim
+Iteracao -> repita NUM vezes Comando fimrepita
+Laco -> enquanto Condicao faca Comando fimpara
+Condicional -> se Condicao entao Comando fimse ComplementoCondicional
+ComplementoCondicional -> senao Comando fimsenao
+ComplementoCondicional -> ''
+Sentido -> esquerda
+Sentido -> direita
+Instrucao -> mova NUM passos
+Instrucao -> vire para Sentido
+Instrucao -> ID
+Instrucao -> pare
+Instrucao -> finalize
+Instrucao -> apague lampada
+Instrucao -> acenda lampada
+Instrucao -> aguarde ate Condicao
+Direcao -> esquerda
+Direcao -> direita
+Direcao -> frente
+Estado -> pronto
+Estado -> parado
+Estado -> ocupado
+Estado -> movimentando
+Condicao -> robo Estado
+Condicao -> Direcao robo bloqueada
+Condicao -> lampada acesa a Direcao
