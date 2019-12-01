@@ -73,10 +73,6 @@ string keyword (string lexema) {
         return "KEY";
     } else if (palav == "entao"){
         return "KEY";
-    } else if (palav == "["){
-        return "KEY";
-    } else if (palav == "]"){
-        return "KEY";
     } else if (palav == "senao"){
         return "KEY";
     } else if (palav == "mova"){
